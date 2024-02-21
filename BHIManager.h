@@ -3,6 +3,7 @@
 
 @interface BHIManager: NSObject
 + (BOOL)hideAds;
++ (BOOL)hideReels;
 + (BOOL)downloadVideos;
 + (BOOL)profileImageSave;
 + (BOOL)removeSuggestedPost;

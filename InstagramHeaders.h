@@ -95,6 +95,9 @@
 @interface IGFeedPhotoView () <BHDownloadDelegate>
 @end
 
+@interface IGSundialFeedViewController: IGViewController
+@end
+
 @interface IGSundialViewerVideoCell: UIView
 - (void)addHandleLongPress; // new
 - (void)handleLongPress:(UILongPressGestureRecognizer *)sender; // new

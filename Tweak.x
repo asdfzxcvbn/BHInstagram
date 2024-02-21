@@ -346,6 +346,17 @@ static BOOL isAuthenticationShowed = FALSE;
 }
 %end
 
+// hide reels
+%hook IGSundialFeedViewController
+- (void)viewDidLoad {
+  %orig;
+
+  if ([BHIManager hideReels]) {
+    [[self view] removeFromSuperview];
+  }
+}
+%end
+
 %hook IGVideoFeedViewController
 - (NSArray *)objectsForListAdapter:(id)arg1 {
   if ([BHIManager hideAds]) {

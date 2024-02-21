@@ -5,6 +5,9 @@
 + (BOOL)hideAds {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_ads"];
 }
++ (BOOL)hideReels {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_reels"];
+}
 + (BOOL)downloadVideos {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dw_videos"];
 }
