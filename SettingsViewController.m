@@ -96,6 +96,7 @@
         
         PSSpecifier *hideAds = [self newSwitchCellWithTitle:@"Hide Ads" detailTitle:@"Remove all Ads from Instagram app" key:@"hide_ads" defaultValue:true changeAction:nil];
         PSSpecifier *hideReels = [self newSwitchCellWithTitle:@"Hide Reels" detailTitle:@"Prevent reels from loading" key:@"hide_reels" defaultValue:false changeAction:nil];
+        PSSpecifier *hideExplore = [self newSwitchCellWithTitle:@"Hide Explore" detailTitle:@"Hide content on the explore page" key:@"hide_explore" defaultValue:false changeAction:nil];
         PSSpecifier *noSuggestedPost = [self newSwitchCellWithTitle:@"No suggested post" detailTitle:@"Remove suggested posts from the feed" key:@"no_suggested_post" defaultValue:false changeAction:nil];
         PSSpecifier *showLikeCount = [self newSwitchCellWithTitle:@"Show Like count" detailTitle:@"Show like count in the post" key:@"show_like_count" defaultValue:true changeAction:nil];
         PSSpecifier *likeConfirmation = [self newSwitchCellWithTitle:@"Confirm like" detailTitle:@"Show alert when you click the like button to confirm the like" key:@"like_confirm" defaultValue:false changeAction:nil];
@@ -114,8 +115,8 @@
 
         PSSpecifier *appLock = [self newSwitchCellWithTitle:@"Padlock" detailTitle:@"Lock Instagram with passcode" key:@"padlock" defaultValue:false changeAction:nil];
 
-        // dvelopers section
         PSSpecifier *bandarHL = [self newHBTwitterCellWithTitle:@"BandarHelal" twitterUsername:@"BandarHL" customAvatarURL:@"https://unavatar.io/twitter/BandarHL"];
+        PSSpecifier *zxcvbn = [self newHBTwitterCellWithTitle:@"zxcvbn" twitterUsername:@"zxxvbn0" customAvatarURL:@"https://unavatar.io/twitter/zxxvbn0"];
         PSSpecifier *tipJar = [self newHBLinkCellWithTitle:@"Tip Jar" detailTitle:@"Donate Via Paypal" url:@"https://www.paypal.me/BandarHL"];
         
         _specifiers = [NSMutableArray arrayWithArray:@[
@@ -123,6 +124,7 @@
             feedSection, // 1
             hideAds,
             hideReels,
+            hideExplore,
             noSuggestedPost,
             showLikeCount,
             likeConfirmation,
@@ -146,6 +148,7 @@
             
             developer, // 5
             bandarHL,
+            zxcvbn,
             tipJar,
         ]];
         

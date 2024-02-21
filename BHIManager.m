@@ -8,6 +8,9 @@
 + (BOOL)hideReels {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_reels"];
 }
++ (BOOL)hideExplore {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"hide_explore"];
+}
 + (BOOL)downloadVideos {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"dw_videos"];
 }

@@ -95,6 +95,9 @@
 @interface IGFeedPhotoView () <BHDownloadDelegate>
 @end
 
+@interface IGExploreGridViewController: UIViewController
+@end
+
 @interface IGSundialFeedViewController: IGViewController
 @end
 

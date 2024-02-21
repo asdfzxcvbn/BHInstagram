@@ -1,6 +1,6 @@
-TARGET := iphone:clang:13.7
+TARGET := iphone:clang:latest:15.0
 INSTALL_TARGET_PROCESSES = SpringBoard
-
+ARCHS = arm64
 
 include $(THEOS)/makefiles/common.mk
 
@@ -11,5 +11,9 @@ BHInsta_FRAMEWORKS = UIKit Foundation CoreGraphics Photos CoreServices SystemCon
 BHInsta_PRIVATE_FRAMEWORKS = Preferences
 BHInsta_EXTRA_FRAMEWORKS = Cephei CepheiPrefs CepheiUI
 BHInsta_CFLAGS = -fobjc-arc -Wno-unused-variable -Wno-unused-value -Wno-deprecated-declarations -Wno-nullability-completeness -Wno-unused-function -Wno-incompatible-pointer-types
+
+ifeq ($(SIDELOADING), 1)
+BHInsta_FILES += SideloadFix.x
+endif
 
 include $(THEOS_MAKE_PATH)/tweak.mk

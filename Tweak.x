@@ -5,9 +5,8 @@ static BOOL shouldBeSeen = false;
 static BOOL seenButtonEnabled = false;
 
 void createDirectoryIfNotExists(NSURL *URL) {
-    if (![URL checkResourceIsReachableAndReturnError:nil]) {
-        [[NSFileManager defaultManager] createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:nil];
-    }
+  if (![URL checkResourceIsReachableAndReturnError:nil])
+    [[NSFileManager defaultManager] createDirectoryAtURL:URL withIntermediateDirectories:YES attributes:nil error:nil];
 }
 
 static BOOL isNotch() {
@@ -349,10 +348,21 @@ static BOOL isAuthenticationShowed = FALSE;
 // hide reels
 %hook IGSundialFeedViewController
 - (void)viewDidLoad {
-  %orig;
-
   if ([BHIManager hideReels]) {
     [[self view] removeFromSuperview];
+  } else {
+    %orig;
+  }
+}
+%end
+
+// hide explore
+%hook IGExploreGridViewController
+- (void)viewDidLoad {
+  if ([BHIManager hideExplore]) {
+    [[self view] removeFromSuperview];
+  } else {
+    %orig;
   }
 }
 %end
