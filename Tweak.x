@@ -78,35 +78,55 @@ static BOOL isAuthenticationShowed = FALSE;
 %end
 
 // tweak settings
-%hook IGProfileMenuSheetViewController
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-   return 9;
-}
+// %hook IGProfileMenuSheetViewController
+// - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return 9;
+// }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 0 && indexPath.row == 8) {
-    IGProfileSheetTableViewCell *bhinstacell = [[%c(IGProfileSheetTableViewCell) alloc] initWithReuseIdentifier:@"bhinsta_settings"];
+// - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+//   if (indexPath.section == 0 && indexPath.row == 8) {
+//     IGProfileSheetTableViewCell *bhinstacell = [[%c(IGProfileSheetTableViewCell) alloc] initWithReuseIdentifier:@"bhinsta_settings"];
 
-    UIImageSymbolConfiguration *configuration = [UIImageSymbolConfiguration configurationWithWeight:UIImageSymbolWeightBold];
-    UIImage *gear = [UIImage systemImageNamed:@"gearshape.fill" withConfiguration:configuration];
+//     UIImageSymbolConfiguration *configuration = [UIImageSymbolConfiguration configurationWithWeight:UIImageSymbolWeightBold];
+//     UIImage *gear = [UIImage systemImageNamed:@"gearshape.fill" withConfiguration:configuration];
 
-    [bhinstacell.imageView setImage:gear];
-    [bhinstacell.imageView setTintColor:[UIColor labelColor]];
-    [bhinstacell.textLabel setText:@"BHInsta settings"];
+//     [bhinstacell.imageView setImage:gear];
+//     [bhinstacell.imageView setTintColor:[UIColor labelColor]];
+//     [bhinstacell.textLabel setText:@"BHInsta settings"];
 
-    return bhinstacell;
-  }
+//     return bhinstacell;
+//   }
 
-  return %orig;
-}
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  if (indexPath.section == 0 && indexPath.row == 8) {
+//   return %orig;
+// }
+// - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//   if (indexPath.section == 0 && indexPath.row == 8) {
+//     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[SettingsViewController alloc] init]];
+//     [self _superPresentViewController:navVC animated:true completion:nil];
+//     [tableView deselectRowAtIndexPath:indexPath animated:true];
+//   } else {
+//     return %orig;
+//   }
+// }
+// %end
+// %hook IGProfileViewController
+// - (void)navigationItemsControllerDidTapSideTray:(id)tray {
+  // %orig(tray);
+  // actually, cant hook here, would interfere with rocket (maybe add to its menu instead?)
+// }
+// %end
+%hook UIAlertController
++ (UIAlertController *)alertControllerWithTitle:(id)title message:(id)msg preferredStyle:(id)style {
+  UIAlertController *done = %orig;
+
+  // pretty sure only rocket makes UIAlertControllers (i sure hope so)
+  [done addAction:[UIAlertAction actionWithTitle:@"BHInsta Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[SettingsViewController alloc] init]];
-    [self _superPresentViewController:navVC animated:true completion:nil];
-    [tableView deselectRowAtIndexPath:indexPath animated:true];
-  } else {
-    return %orig;
-  }
+    // what a pain
+    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:navVC animated:true completion:nil];
+  }]];
+
+  return done;
 }
 %end
 
