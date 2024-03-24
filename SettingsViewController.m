@@ -7,12 +7,12 @@
 
 #import "SettingsViewController.h"
 
-@interface SettingsViewController ()
+@interface BHSettingsViewController ()
 @property (nonatomic, assign) BOOL hasDynamicSpecifiers;
 @property (nonatomic, retain) NSMutableDictionary *dynamicSpecifiers;
 @end
 
-@implementation SettingsViewController
+@implementation BHSettingsViewController
 - (instancetype)init {
     self = [super init];
     if (self) {

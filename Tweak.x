@@ -115,20 +115,20 @@ static BOOL isAuthenticationShowed = FALSE;
   // actually, cant hook here, would interfere with rocket (maybe add to its menu instead?)
 // }
 // %end
-%hook UIAlertController
-+ (UIAlertController *)alertControllerWithTitle:(id)title message:(id)msg preferredStyle:(id)style {
-  UIAlertController *done = %orig;
-
-  // pretty sure only rocket makes UIAlertControllers (i sure hope so)
-  [done addAction:[UIAlertAction actionWithTitle:@"BHInsta Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-    UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[[SettingsViewController alloc] init]];
-    // what a pain
-    [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:navVC animated:true completion:nil];
-  }]];
-
-  return done;
-}
-%end
+// %hook UIAlertController
+// + (UIAlertController *)alertControllerWithTitle:(id)title message:(id)msg preferredStyle:(id)style {
+  // UIAlertController *done = %orig;
+// 
+  // // pretty sure only rocket makes UIAlertControllers (i sure hope so)
+  // [done addAction:[UIAlertAction actionWithTitle:@"BHInsta Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+    // UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:[BHSettingsViewController new]];
+    // // what a pain
+    // [UIApplication.sharedApplication.keyWindow.rootViewController presentViewController:navVC animated:true completion:nil];
+  // }]];
+// 
+  // return done;
+// }
+// %end
 
 
 %hook IGDirectRealtimeIrisThreadDelta
